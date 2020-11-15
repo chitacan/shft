@@ -1,0 +1,29 @@
+{
+  "name": "shft-cli",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "dayjs": "^1.9.5",
+    "dotenv": "^8.2.0",
+    "got": "^11.8.0",
+    "puppeteer": "^5.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev ./bin/index.js",
+    "start": "./bin/index.js"
+  },
+  "bin": {
+    "shft": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chitacan/shft.git"
+  },
+  "homepage": "https://github.com/chitacan/shft#readme",
+  "keywords": [],
+  "author": "Kyungyeol Kim <chitacan@gmail.com>",
+  "license": "ISC"
+}
