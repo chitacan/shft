@@ -50,8 +50,6 @@ export async function getServerSideProps({req, res}) {
     return day(clock_in_time).startOf('day').unix() === now.startOf('day').unix();
   });
 
-  console.log(attendances)
-
   return {
     props: {
       email,
