@@ -43,9 +43,10 @@ export default async function(req, res) {
     return res.status(404).json({email, message: 'cannot find attendances'});
   }
 
+  // 오늘 중 마지막 퇴근이 없는 attendance 를 찾아야 함
   const [{attendance_id}] = attendances.reverse();
 
-  const {attendance} = await fetch(`https://shiftee.io/api/attendance/me/${attendance_id}/clock-out`, {
+  await fetch(`https://shiftee.io/api/attendance/me/${attendance_id}/clock-out`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -55,7 +56,12 @@ export default async function(req, res) {
       coordinate: [37.50938599954014, 127.0616001923596]
     })
   })
-  .then(d => d.json());
-
-  res.status(200).json({email, attendance});
+  .then(d => d.json())
+  .then(({attendance}) => {
+    res.status(200).json({email, attendance});
+  })
+  .catch(e => {
+    console.error(email, e)
+    res.status(400).json(e.message);
+  });
 };

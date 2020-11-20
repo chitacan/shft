@@ -33,7 +33,7 @@ export default async function(req, res) {
     ...body.attendance
   };
 
-  const {attendance} = await fetch('https://shiftee.io/api/attendance/me/clock-in', {
+  await fetch('https://shiftee.io/api/attendance/me/clock-in', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -41,6 +41,12 @@ export default async function(req, res) {
     },
     body: JSON.stringify(userAttendance)
   })
-  .then(d => d.json());
-  res.status(200).json({email, attendance});
+  .then(d => d.json())
+  .then(({attendance}) => {
+    res.status(200).json({email, attendance});
+  })
+  .catch(e => {
+    console.error(email, e)
+    res.status(400).json(e.message);
+  });
 };

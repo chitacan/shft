@@ -101,6 +101,7 @@ const Index = ({email, today, attendances}) => {
                   router.replace('/');
                 })
                 .catch(e => {
+                  // show error
                 });
               }}
               type="button"
@@ -122,6 +123,7 @@ const Index = ({email, today, attendances}) => {
                   router.replace('/');
                 })
                 .catch(e => {
+                  // show error
                 });
               }}
               type="button"
